@@ -4,5 +4,5 @@ import com.fesc.apiPlazoletaFesc.Shared.UsuarioDto;
 
 public interface IUsuarioService {
     
-    public UsuarioDto crearUsuario(UsuarioDto usuarioDto);
+    public UsuarioDto crearUsuario(UsuarioDto usuarioCrearDto);
 }

@@ -31,11 +31,11 @@ public class UsuarioController {
     @PostMapping
     public UsuarioDataRestModel CrearUsuario(@RequestBody UsuarioCrearRequestModel usuarioCrearRequestModel) {
         
-        UsuarioDto usuarioDto = modelMapper.map(usuarioCrearRequestModel, UsuarioDto.class);
+        UsuarioDto usuarioCrearDto = modelMapper.map(usuarioCrearRequestModel, UsuarioDto.class);
 
-        UsuarioDto usuarioDataDto = iUsuarioService.crearUsuario(usuarioDto);
+        UsuarioDto usuarioDto = iUsuarioService.crearUsuario(usuarioCrearDto);
 
-        UsuarioDataRestModel usuarioDataRestModel = modelMapper.map(usuarioDataDto, UsuarioDataRestModel.class);
+        UsuarioDataRestModel usuarioDataRestModel = modelMapper.map(usuarioDto, UsuarioDataRestModel.class);
         
         return usuarioDataRestModel;
     }

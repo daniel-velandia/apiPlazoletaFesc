@@ -3,10 +3,15 @@ package com.fesc.apiPlazoletaFesc.Models.Peticiones;
 public class UsuarioCrearRequestModel {
     
     private String nombre;
+
     private String apellido;
+
     private long documentoIdentidad;
+
     private String celular;
+
     private String correo;
+    
     private String clave;
 
     public String getNombre() {

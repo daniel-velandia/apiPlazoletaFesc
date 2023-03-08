@@ -6,8 +6,13 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.Index;
+import jakarta.persistence.Table;
 
 @Entity(name = "usuario")
+@Table(indexes = {
+    @Index(columnList = "documentoIdentidad", name = "index_documentoIdentidad", unique = true)
+})
 public class UsuarioEntity implements Serializable{
 
     private static final long serialVersionUID = 1L;
@@ -18,6 +23,21 @@ public class UsuarioEntity implements Serializable{
 
     @Column(nullable = false)
     private String nombre;
+
+    @Column(nullable = false)
+    private String apellido;
+    
+    @Column(nullable = false)
+    private long documentoIdentidad;
+    
+    @Column(nullable = false, length = 13)
+    private String celular;
+    
+    @Column(nullable = false)
+    private String correo;
+    
+    @Column(nullable = false)
+    private String claveEncriptada;
 
     public long getId() {
         return this.id;
@@ -74,19 +94,4 @@ public class UsuarioEntity implements Serializable{
     public void setClaveEncriptada(String claveEncriptada) {
         this.claveEncriptada = claveEncriptada;
     }
-
-    @Column(nullable = false)
-    private String apellido;
-    
-    @Column(nullable = false)
-    private long documentoIdentidad;
-    
-    @Column(nullable = false, length = 13)
-    private String celular;
-    
-    @Column(nullable = false)
-    private String correo;
-    
-    @Column(nullable = false)
-    private String claveEncriptada;
 }

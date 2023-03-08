@@ -22,23 +22,24 @@ public class UsuarioService implements IUsuarioService{
     BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Override
-    public UsuarioDto crearUsuario(UsuarioDto usuarioDto) {
+    public UsuarioDto crearUsuario(UsuarioDto usuarioCrearDto) {
         
-        if (usuarioDto.getCorreo().contains("@") && usuarioDto.getCelular().length() <= 13) {
-
-            UsuarioEntity usuarioEntity = modelMapper.map(usuarioDto, UsuarioEntity.class);
-            usuarioEntity.setClaveEncriptada(bCryptPasswordEncoder.encode(usuarioDto.getClave()));
-
-            UsuarioEntity usuarioRespEntity = iUsuarioRepository.save(usuarioEntity);
-
-            UsuarioDto usuarioRespDto = modelMapper.map(usuarioRespEntity, UsuarioDto.class);
-
-            return usuarioRespDto;
-
-        } else {
-
-            return new UsuarioDto();
+        if (!usuarioCrearDto.getCorreo().contains("@")) {
+            throw new RuntimeException("El correo no cumple con el formato correcto...");
         }
+
+        if (usuarioCrearDto.getCelular().length() > 13) {
+            throw new RuntimeException("El numero de celular excede la cantidad de digitos permitida...");
+        }
+
+        UsuarioEntity usuarioEntity = modelMapper.map(usuarioCrearDto, UsuarioEntity.class);
+        usuarioEntity.setClaveEncriptada(bCryptPasswordEncoder.encode(usuarioCrearDto.getClave()));
+
+        UsuarioEntity usuarioRespEntity = iUsuarioRepository.save(usuarioEntity);
+
+        UsuarioDto usuarioDto = modelMapper.map(usuarioRespEntity, UsuarioDto.class);
+
+        return usuarioDto;
         
     }
 }

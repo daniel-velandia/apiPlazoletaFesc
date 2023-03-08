@@ -7,12 +7,20 @@ public class UsuarioDto implements Serializable{
     private static final long serialVersionUID = 1L;
 
     private long id;
+
     private String nombre;
+
     private String apellido;
+
     private long documentoIdentidad;
+    
     private String celular;
+
     private String correo;
+
     private String clave;
+
+    private String claveEncriptada;
 
     public long getId() {
         return this.id;
@@ -77,5 +85,4 @@ public class UsuarioDto implements Serializable{
     public void setClaveEncriptada(String claveEncriptada) {
         this.claveEncriptada = claveEncriptada;
     }
-    private String claveEncriptada;
 }

@@ -3,7 +3,9 @@ package com.fesc.apiPlazoletaFesc.Models.Respuestas;
 public class UsuarioDataRestModel {
     
     private String nombre;
+
     private String apellido;
+    
     private String correo;
 
     public String getNombre() {
